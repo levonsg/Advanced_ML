@@ -39,14 +39,16 @@ class tree():
         best_feature, best_threshold = self.best_split(X, y)
         left_mask = X[:, best_feature] <= best_threshold
         right_mask = X[:, best_feature] > best_threshold
-        Tr = self.fit(X[left_mask], y[left_mask])
 
+        Tr = self.fit(X[left_mask], y[left_mask])
         Fl = self.fit(X[right_mask], y[right_mask])
+
         return {'feature': best_feature, 'value': best_threshold, 'true': Tr, 'false': Fl, }
     def gini(self, y):
         _, counts = np.unique(y, return_counts=True)
         pk = counts/len(y)
         return np.sum(pk * (1-pk))
+
 
 
 
